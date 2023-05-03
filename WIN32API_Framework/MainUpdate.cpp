@@ -30,6 +30,9 @@ void MainUpdate::Update()
 		m_pPlayer->Update();
 	if (m_Enemy)
 		m_Enemy->Update();
+
+	m_pPlayer->ColTest(m_Enemy->GetPosition());
+
 }
 
 void MainUpdate::Render()

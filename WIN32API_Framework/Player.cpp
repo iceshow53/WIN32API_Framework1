@@ -91,3 +91,23 @@ GameObject* Player::CreateBullet()
 
 	return bullet;
 }
+
+void Player::ColTest(Vector3 _position)
+{
+	for (int i = 0; i < BULLETCOUNT; ++i)
+	{
+		if (BulletList[i] != NULL)
+		{
+			float x = _position.x - BulletList[i]->GetPosition().x;
+			float y = _position.y - BulletList[i]->GetPosition().y;
+			
+			double c = sqrt((x * x) + (y * y));
+
+			if (c <= 50)
+			{
+				delete BulletList[i];
+				BulletList[i] = nullptr;
+			}
+		}
+	}
+}

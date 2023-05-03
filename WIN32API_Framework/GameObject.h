@@ -12,6 +12,7 @@ public:
 	virtual int Update()PURE;
 	virtual void Render(HDC hdc)PURE;
 	virtual void Destroy()PURE;
+	virtual void ColTest(Vector3 _position)PURE;
 public:
 	Transform GetTransform() { return transform; }
 	//void SetTransform(Transform _transform){ transform = _transform; }

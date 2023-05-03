@@ -9,8 +9,8 @@ public:
 	virtual int Update()override;
 	virtual void Render(HDC hdc)override;
 	virtual void Destroy()override;
+	virtual void ColTest(Vector3 _position)override {  };
 public:
-	int is_col(Vector3 _position);
 public:
 	Bullet();
 	virtual ~Bullet();

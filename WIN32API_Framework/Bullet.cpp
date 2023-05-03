@@ -49,14 +49,3 @@ void Bullet::Destroy()
 {
 }
 
-int Bullet::is_col(Vector3 _position)
-{
-	float x = transform.position.x - _position.x;
-	float y = transform.position.y - _position.y;
-
-	if (x / y <= 5)
-		return 1;
-
-	return 0;
-}
-
