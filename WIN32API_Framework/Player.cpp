@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Bullet.h"
+#include "ObjectManager.h"
 
 Player::Player()
 {
@@ -18,24 +19,10 @@ void Player::Start()
 	transform.scale = Vector3(100.0f, 100.0f, 0.0f);
 
 	Speed = 5.0f;
-
-	for (int i = 0; i < BULLETCOUNT; ++i)
-		BulletList[i] = nullptr;
 }
 
 int Player::Update()
 {
-	for (int i = 0; i < BULLETCOUNT; ++i)
-	{
-		if (BulletList[i] != nullptr)
-		{
-			if (BulletList[i]->Update())
-			{
-				delete BulletList[i];
-				BulletList[i] = nullptr;
-			}
-		}
-	}
 
 	if (GetAsyncKeyState(VK_UP))
 		transform.position.y -= Speed;
@@ -50,16 +37,7 @@ int Player::Update()
 		transform.position.x += Speed;
 
 	if (GetAsyncKeyState(VK_SPACE))
-	{
-		for (int i = 0; i < BULLETCOUNT; ++i)
-		{
-			if (BulletList[i] == nullptr)
-			{
-				BulletList[i] = CreateBullet();
-				break;
-			}
-		}
-	}
+		ObjectManager::GetInstance()->AddObject(CreateBullet());
 
 	return 0;
 }
@@ -71,12 +49,6 @@ void Player::Render(HDC hdc)
 		int(transform.position.y - (transform.scale.y * 0.5f)),
 		int(transform.position.x + (transform.scale.x * 0.5f)),
 		int(transform.position.y + (transform.scale.y * 0.5f)));
-
-	for (int i = 0; i < BULLETCOUNT; ++i)
-	{
-		if (BulletList[i] != nullptr)
-			BulletList[i]->Render(hdc);
-	}
 }
 
 void Player::Destroy()
@@ -90,24 +62,4 @@ GameObject* Player::CreateBullet()
 	
 
 	return bullet;
-}
-
-void Player::ColTest(Vector3 _position)
-{
-	for (int i = 0; i < BULLETCOUNT; ++i)
-	{
-		if (BulletList[i] != NULL)
-		{
-			float x = _position.x - BulletList[i]->GetPosition().x;
-			float y = _position.y - BulletList[i]->GetPosition().y;
-			
-			double c = sqrt((x * x) + (y * y));
-
-			if (c <= 60)
-			{
-				delete BulletList[i];
-				BulletList[i] = nullptr;
-			}
-		}
-	}
 }

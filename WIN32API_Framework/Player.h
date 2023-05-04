@@ -4,7 +4,6 @@
 class Player : public GameObject
 {
 private:
-	GameObject* BulletList[BULLETCOUNT];
 
 public:
 	virtual void Start()override;
@@ -14,7 +13,6 @@ public:
 	virtual int Update()override;
 	virtual void Render(HDC hdc)override;
 	virtual void Destroy()override;
-	virtual void ColTest(Vector3 _position)override;
 public:
 	GameObject* CreateBullet();
 public:

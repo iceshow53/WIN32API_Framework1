@@ -14,6 +14,8 @@ void Enemy::Start()
 	transform.rotation = Vector3(0.0f, 0.0f, 0.0f);
 	transform.scale = Vector3(120.0f, 120.0f, 0.0f);
 
+	Key = "Enemy";
+
 	Speed = 0.5f;
 }
 
