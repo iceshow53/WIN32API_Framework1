@@ -6,6 +6,7 @@ class Enemy : public GameObject
 private:
 	HBRUSH hbrBkgnd;
 	RECT rect;
+	int r, g, b = 0;
 
 public:
 	virtual void Start()override;

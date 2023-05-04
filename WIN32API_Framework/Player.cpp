@@ -103,7 +103,7 @@ void Player::ColTest(Vector3 _position)
 			
 			double c = sqrt((x * x) + (y * y));
 
-			if (c <= 50)
+			if (c <= 60)
 			{
 				delete BulletList[i];
 				BulletList[i] = nullptr;

@@ -23,26 +23,30 @@ int Enemy::Update()
 
 	if (transform.position.x < 0)
 		return 2;
+
+	r += 1;
+	g += 5;
+	b += 10;
 	
     return 0;
 }
 
 void Enemy::Render(HDC hdc)
 {
-	Ellipse(hdc,
-		int(transform.position.x - (transform.scale.x * 0.5f)),
-		int(transform.position.y - (transform.scale.y * 0.5f)),
-		int(transform.position.x + (transform.scale.x * 0.5f)),
-		int(transform.position.y + (transform.scale.y * 0.5f)));
-
-	//hbrBkgnd = CreateSolidBrush(RGB(255, 30, 120));
-
-	//rect = { int(transform.position.x - (transform.scale.x * 0.5f)),
+	//Ellipse(hdc,
+	//	int(transform.position.x - (transform.scale.x * 0.5f)),
 	//	int(transform.position.y - (transform.scale.y * 0.5f)),
 	//	int(transform.position.x + (transform.scale.x * 0.5f)),
-	//	int(transform.position.y + (transform.scale.y * 0.5f)) };
+	//	int(transform.position.y + (transform.scale.y * 0.5f)));
 
-	//FillRect(hdc, &rect, hbrBkgnd);
+	hbrBkgnd = CreateSolidBrush(RGB(r, g, b));
+
+	rect = { int(transform.position.x - (transform.scale.x * 0.5f)),
+		int(transform.position.y - (transform.scale.y * 0.5f)),
+		int(transform.position.x + (transform.scale.x * 0.5f)),
+		int(transform.position.y + (transform.scale.y * 0.5f)) };
+
+	FillRect(hdc, &rect, hbrBkgnd);
 }
 
 void Enemy::Destroy()
